@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         email,
         hash,
         salt,
-        role: 'HRD',
+        role: 'ADMIN',
         profileImage,
       },
     });

@@ -5,7 +5,7 @@ import { authconfig } from './auth.config';
 import { comparePassword } from './utils/password-utils';
 
 interface ExtendedUser extends User {
-  role: 'HRD' | 'SPV' | 'USER';
+  role: 'HRD' | 'SPV' | 'USER' | 'ADMIN';
   profileImage: string;
 }
 export const { auth, handlers, signIn, signOut } = NextAuth({

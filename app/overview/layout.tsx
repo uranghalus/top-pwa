@@ -8,7 +8,7 @@ const OverviewLayout: React.FC<ChildrenProps> = ({ children }) => {
   return (
     <section className="bg-gray-50 dark:bg-neutral-900">
       <Navbar />
-      <Breadcrumbs />
+      {/* <Breadcrumbs /> */}
       <Sidebar />
       <div className="w-full lg:ps-64">
         <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">{children}</div>
