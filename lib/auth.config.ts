@@ -14,7 +14,7 @@ export const authconfig = {
         // /\/place-order/,
         /\/profile/,
         // /\/order\/(.*)/,
-        /\/admin/,
+        /\/overview/,
       ];
       const { pathname } = request.nextUrl;
       if (protectedPaths.some((p) => p.test(pathname))) return !!auth;

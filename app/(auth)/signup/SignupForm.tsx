@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
-
+import { BeatLoader, HashLoader } from 'react-spinners';
 import {
   Form,
   FormControl,
@@ -47,6 +47,7 @@ const SignupForm = () => {
         toast.success('Yeay!', {
           description: 'Registrasi Berhasil',
         });
+        form.reset();
       }
     } catch (error: any) {
       console.error('Register Action Error:', error);
@@ -114,7 +115,14 @@ const SignupForm = () => {
           size={'block'}
           disabled={form.formState.isSubmitting}
         >
-          Daftar
+          {form.formState.isSubmitting ? (
+            <>
+              <BeatLoader size={5} color="white" />
+              <span>Harap Tunggu</span>
+            </>
+          ) : (
+            'Daftar'
+          )}
         </Button>
       </form>
     </Form>

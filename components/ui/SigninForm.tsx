@@ -23,7 +23,7 @@ import { RiLockPasswordFill, RiMailFill } from 'react-icons/ri';
 import { loginServices } from '@/lib/services/auth.service';
 import { LoginSchema } from '@/lib/schema/auth.schema';
 import { Button } from './button';
-
+import { BeatLoader, HashLoader } from 'react-spinners';
 const SigninForm = () => {
   const { data: session } = useSession();
   const params = useSearchParams();
@@ -31,8 +31,8 @@ const SigninForm = () => {
   let callbackUrl = params.get('callbackUrl') || '/';
   useEffect(() => {
     if (session && session.user) {
-      if (session?.user?.role === 'HRD') {
-        router.push('/admin');
+      if (session?.user) {
+        router.push('/overview');
       } else {
         router.push(callbackUrl);
       }
@@ -57,8 +57,8 @@ const SigninForm = () => {
         description: 'Login Berhasil',
       });
       setTimeout(() => {
-        if (session?.user?.role === 'HRD') {
-          router.push('/admin');
+        if (session?.user) {
+          router.push('/overview');
         } else {
           router.push(callbackUrl);
         }
@@ -110,7 +110,14 @@ const SigninForm = () => {
           size={'block'}
           disabled={form.formState.isSubmitting}
         >
-          Masuk
+          {form.formState.isSubmitting ? (
+            <>
+              <BeatLoader size={5} color="white" />
+              <span>Harap Tunggu</span>
+            </>
+          ) : (
+            'Masuk'
+          )}
         </Button>
       </form>
     </Form>
