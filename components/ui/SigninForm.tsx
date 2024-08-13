@@ -57,11 +57,7 @@ const SigninForm = () => {
         description: 'Login Berhasil',
       });
       setTimeout(() => {
-        if (session?.user) {
-          router.push('/overview');
-        } else {
-          router.push(callbackUrl);
-        }
+        router.push('/overview');
       }, 2000);
     }
   };
