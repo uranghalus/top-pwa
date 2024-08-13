@@ -6,6 +6,6 @@
 
 # See the documentation for all the connection string options: https://pris.ly/d/connection-strings
 
-DATABASE_URL="postgres://avnadmin:AVNS_dqLXaBMt7TsoyNeUXIc@pg-2662064d-muhammadfauzan7-0cc6.e.aivencloud.com:24042/top_db?sslmode=require"
+DATABASE_URL="postgresql://postgres:root@localhost:5432/top_db"
 AUTH_SECRET="s8J2E3tHKD75sjNgMSoiliMY5JSuRLTnlK8mlG0IjDk="
 BASE_URL="http://localhost:3000/"
