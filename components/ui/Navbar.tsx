@@ -1,6 +1,12 @@
 import React from 'react';
 import ProfileDropdown from './dropdown/profile-dropdown';
-import { RiMenu4Line, RiSearch2Line } from 'react-icons/ri';
+import {
+  RiCloseLine,
+  RiMenu4Line,
+  RiNotification3Line,
+  RiPulseLine,
+  RiSearch2Line,
+} from 'react-icons/ri';
 
 const Navbar = () => {
   return (
@@ -42,22 +48,7 @@ const Navbar = () => {
                   aria-label="Close"
                 >
                   <span className="sr-only">Close</span>
-                  <svg
-                    className="shrink-0 size-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="m15 9-6 6" />
-                    <path d="m9 9 6 6" />
-                  </svg>
+                  <RiCloseLine className="shrink-0 size-5" />
                 </button>
               </div>
               <div className="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-3 text-gray-400">
@@ -103,21 +94,7 @@ const Navbar = () => {
               type="button"
               className="md:hidden size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
             >
-              <svg
-                className="shrink-0 size-5"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
+              <RiSearch2Line className="shrink-0 size-5" />
               <span className="sr-only">Search</span>
             </button>
 
@@ -125,21 +102,7 @@ const Navbar = () => {
               type="button"
               className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
             >
-              <svg
-                className="shrink-0 size-5"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-              </svg>
+              <RiNotification3Line className="shrink-0 size-5" />
               <span className="sr-only">Notifications</span>
             </button>
 
@@ -147,20 +110,7 @@ const Navbar = () => {
               type="button"
               className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
             >
-              <svg
-                className="shrink-0 size-5"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-              </svg>
+              <RiPulseLine className="shrink-0 size-5" />
               <span className="sr-only">Activity</span>
             </button>
 

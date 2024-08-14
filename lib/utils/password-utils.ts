@@ -1,4 +1,4 @@
-import { randomBytes, pbkdf2, createHash } from 'node:crypto';
+import { randomBytes, pbkdf2, createHash } from 'crypto';
 async function hashPassword(
   password: string
 ): Promise<{ hash: string; salt: string }> {
