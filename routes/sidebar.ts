@@ -1,5 +1,10 @@
 import { IconType } from 'react-icons';
-import { RiApps2Fill, RiDatabase2Line, RiUserLine } from 'react-icons/ri';
+import {
+  RiApps2Fill,
+  RiBuildingLine,
+  RiDatabase2Line,
+  RiUserLine,
+} from 'react-icons/ri';
 
 interface Route {
   path: string;
@@ -19,9 +24,9 @@ const routes: Route[] = [
     name: 'Master Data',
     submenu: [
       {
-        path: '/overview/master-user',
-        icon: RiUserLine,
-        name: 'Data Pengguna',
+        path: '/overview/master-department',
+        icon: RiBuildingLine,
+        name: 'Data Departement',
       },
       {
         path: '/overview/master-user',

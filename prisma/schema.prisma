@@ -19,6 +19,13 @@ model User {
   updatedAt    DateTime @default(now())
 }
 
+model Department {
+  id              Int      @id @default(autoincrement())
+  department_name String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now())
+}
+
 enum ROLE {
   HRD
   USER

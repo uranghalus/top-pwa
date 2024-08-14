@@ -4,10 +4,7 @@ import { prisma } from './prisma';
 import { authconfig } from './auth.config';
 import { comparePassword } from './utils/password-utils';
 
-interface ExtendedUser extends User {
-  role: 'HRD' | 'SPV' | 'USER' | 'ADMIN';
-  profileImage: string;
-}
+
 export const { auth, handlers, signIn, signOut } = NextAuth({
   ...authconfig,
   providers: [
@@ -41,32 +38,4 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  callbacks: {
-    async jwt({ user, trigger, session, token }: any) {
-      const Extuser: ExtendedUser = user;
-      if (Extuser) {
-        token.user = {
-          _id: user._id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
-          profileImage: user.profileImage,
-        };
-      }
-      if (trigger === 'update' && session) {
-        token.user = {
-          ...token.user,
-          email: session.user.email,
-          name: session.user.name,
-        };
-      }
-      return token;
-    },
-    session: async ({ session, token }: any) => {
-      if (token) {
-        session.user = token.user;
-      }
-      return session;
-    },
-  },
 });
