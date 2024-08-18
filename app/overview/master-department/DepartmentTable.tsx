@@ -5,10 +5,18 @@ import { DataTable } from '@/components/ui/tables/DataTable';
 
 import { ColumnDef } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
-import { RiExpandUpDownLine, RiMore2Fill } from 'react-icons/ri';
+import {
+  RiDeleteBin5Line,
+  RiEditBoxLine,
+  RiExpandUpDownLine,
+  RiMore2Fill,
+  RiSearchLine,
+} from 'react-icons/ri';
+import useSWR, { mutate } from 'swr';
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export type Department = {
-  id: string;
+  id: number;
   department_name: string;
 };
 
@@ -35,21 +43,22 @@ export const columns: ColumnDef<Department>[] = [
         <div className="inline-flex rounded-lg shadow-sm">
           <button
             type="button"
-            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700   disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
           >
-            Default
+            <RiSearchLine className="size-5" />
           </button>
           <button
             type="button"
-            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-transparent bg-yellow-500 text-white hover:bg-yellow-600 focus:bg-yellow-600 focus:outline-none  disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
           >
-            Default
+            <RiEditBoxLine className="size-5" />
           </button>
           <button
             type="button"
-            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+            onClick={() => handleDelete(row.original.id)}
+            className="p-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border-transparent bg-red-500 text-white hover:bg-red-600  focus:bg-red-600 focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
           >
-            Default
+            <RiDeleteBin5Line className="size-5" />
           </button>
         </div>
       );
@@ -61,19 +70,19 @@ const handleEdit = (id: number) => {
 };
 
 const handleDelete = async (id: number) => {
-  await fetch(`/api/posts/${id}`, {
+  await fetch(`/api/department/${id}`, {
     method: 'DELETE',
   });
   // Optionally, refresh the data
+  mutate('/api/department');
 };
 
 const DepartmentTable = () => {
-  const [Departments, setDepartments] = useState<Department[]>([]);
-  useEffect(() => {
-    fetch('/api/department')
-      .then((response) => response.json())
-      .then((data) => setDepartments(data));
-  }, []);
+  const { data: Departments, error } = useSWR('/api/department', fetcher);
+
+  if (error) return <div>Error loading data</div>;
+  if (!Departments) return <div>Loading...</div>;
+
   return <DataTable columns={columns} data={Departments} />;
 };
 

@@ -29,6 +29,7 @@ import {
 } from 'react-icons/ri';
 import { BeatLoader } from 'react-spinners';
 import { toast } from 'sonner';
+import { mutate } from 'swr';
 import { z } from 'zod';
 const DepartSchema = z.object({
   department_name: z.string().min(1, {
@@ -63,6 +64,8 @@ const ModallAddDepartment = () => {
         toast.success('Yeay!', {
           description: 'Registrasi Berhasil',
         });
+        mutate('/api/department');
+
         form.reset();
       }
     } catch (error: any) {
